@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#087443">
+  <title>Admin Portal - SDS Muhammadiyah Duri</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+
+  <header class="admin-header">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">M</span>
+      <span>
+        <strong>PORTAL SEKOLAH</strong>
+        <small>SDS Muhammadiyah Duri</small>
+      </span>
+    </a>
+    <a href="index.html" class="admin-back">Lihat Website</a>
+  </header>
+
+  <main class="admin-container">
+
+    <!-- HALAMAN LOGIN -->
+    <section id="loginSection" class="admin-login">
+      <div class="admin-login-icon">M</div>
+      <h1>Login Administrator</h1>
+      <p>Silakan masuk untuk mengelola portal sekolah.</p>
+
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Masukkan username"
+          autocomplete="username"
+          required
+        >
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Masukkan password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit" id="loginButton" class="btn-primary">
+          Masuk ke Dashboard
+        </button>
+
+        <p id="loginMessage" class="admin-message"></p>
+      </form>
+
+      <a href="index.html" class="back-home">← Kembali ke halaman utama</a>
+    </section>
+
+    <!-- DASHBOARD ADMIN -->
+    <section id="dashboardSection" class="admin-dashboard" hidden>
+
+      <div class="dashboard-heading">
+        <div>
+          <h1>Dashboard Administrator</h1>
+          <p>Kelola informasi dan konten website sekolah.</p>
+        </div>
+        <button type="button" id="logoutButton" class="btn-secondary">
+          Keluar
+        </button>
+      </div>
+
+      <nav class="admin-tabs">
+        <button type="button" class="admin-tab active" data-tab="berita">
+          Berita
+        </button>
+        <button type="button" class="admin-tab" data-tab="agenda">
+          Agenda
+        </button>
+        <button type="button" class="admin-tab" data-tab="konten">
+          Konten
+        </button>
+        <button type="button" class="admin-tab" data-tab="identitas">
+          Identitas Sekolah
+        </button>
+      </nav>
+
+      <!-- TAB BERITA -->
+      <section id="tab-berita" class="admin-panel">
+        <h2>Kelola Berita</h2>
+
+        <form id="newsForm">
+          <input type="hidden" id="newsId">
+
+          <label for="newsTitle">Judul Berita</label>
+          <input type="text" id="newsTitle" required>
+
+          <label for="newsDate">Tanggal</label>
+          <input type="date" id="newsDate">
+
+          <label for="newsSummary">Ringkasan Berita</label>
+          <textarea id="newsSummary" rows="3"></textarea>
+
+          <label for="newsBody">Isi Berita</label>
+          <textarea id="newsBody" rows="6"></textarea>
+
+          <label for="newsImage">Foto Berita</label>
+          <input type="file" id="newsImage" accept="image/*">
+
+          <label for="newsSource">Sumber</label>
+          <input type="text" id="newsSource">
+
+          <div class="admin-actions">
+            <button type="submit" class="btn-primary">Simpan Berita</button>
+            <button type="button" id="resetNews" class="btn-secondary">Batal</button>
+          </div>
+        </form>
+
+        <div id="newsList" class="admin-record-list"></div>
+      </section>
+
+      <!-- TAB AGENDA -->
+      <section id="tab-agenda" class="admin-panel" hidden>
+        <h2>Kelola Agenda Sekolah</h2>
+
+        <form id="agendaForm">
+          <input type="hidden" id="agendaId">
+
+          <label for="agendaTitle">Nama Kegiatan</label>
+          <input type="text" id="agendaTitle" required>
+
+          <label for="agendaDate">Tanggal</label>
+          <input type="date" id="agendaDate">
+
+          <label for="agendaTime">Waktu</label>
+          <input type="text" id="agendaTime" placeholder="Contoh: 08.00 WIB">
+
+          <label for="agendaLocation">Lokasi</label>
+          <input type="text" id="agendaLocation">
+
+          <label for="agendaCategory">Kategori</label>
+          <input type="text" id="agendaCategory">
+
+          <label for="agendaDescription">Deskripsi</label>
+          <textarea id="agendaDescription" rows="4"></textarea>
+
+          <div class="admin-actions">
+            <button type="submit" class="btn-primary">Simpan Agenda</button>
+            <button type="button" id="resetAgenda" class="btn-secondary">Batal</button>
+          </div>
+        </form>
+
+        <div id="agendaList" class="admin-record-list"></div>
+      </section>
+
+      <!-- TAB KONTEN -->
+      <section id="tab-konten" class="admin-panel" hidden>
+        <h2>Kelola Konten Website</h2>
+
+        <form id="contentForm">
+          <input type="hidden" id="contentId">
+
+          <label for="contentCategory">Kategori Konten</label>
+          <select id="contentCategory" required>
+            <option value="">Pilih kategori</option>
+            <option value="profil">Profil Sekolah</option>
+            <option value="akademik">Akademik</option>
+            <option value="program">Program Sekolah</option>
+            <option value="prestasi">Prestasi</option>
+            <option value="wisuda">Wisuda</option>
+            <option value="ppdb">PPDB</option>
+            <option value="galeri">Galeri</option>
+            <option value="guru">Guru</option>
+          </select>
+
+          <label for="contentTitle">Judul</label>
+          <input type="text" id="contentTitle" required>
+
+          <label for="contentSummary">Ringkasan</label>
+          <textarea id="contentSummary" rows="3"></textarea>
+
+          <label for="contentBody">Isi Konten</label>
+          <textarea id="contentBody" rows="6"></textarea>
+
+          <label for="contentImage">Foto</label>
+          <input type="file" id="contentImage" accept="image/*">
+
+          <label for="contentOrder">Urutan Tampilan</label>
+          <input type="number" id="contentOrder" value="1">
+
+          <label for="contentSource">Sumber</label>
+          <input type="text" id="contentSource">
+
+          <div class="admin-actions">
+            <button type="submit" class="btn-primary">Simpan Konten</button>
+            <button type="button" id="resetContent" class="btn-secondary">Batal</button>
+          </div>
+        </form>
+
+        <div id="contentList" class="admin-record-list"></div>
+      </section>
+
+      <!-- TAB IDENTITAS SEKOLAH -->
+      <section id="tab-identitas" class="admin-panel" hidden>
+        <h2>Identitas Sekolah</h2>
+
+        <form id="settingsForm">
+          <div class="settings-grid">
+
+            <div>
+              <label for="nama_sekolah">Nama Sekolah</label>
+              <input id="nama_sekolah">
+            </div>
+
+            <div>
+              <label for="nama_panjang">Nama Lengkap</label>
+              <input id="nama_panjang">
+            </div>
+
+            <div>
+              <label for="slogan">Slogan</label>
+              <input id="slogan">
+            </div>
+
+            <div>
+              <label for="npsn">NPSN</label>
+              <input id="npsn">
+            </div>
+
+            <div>
+              <label for="status_sekolah">Status Sekolah</label>
+              <input id="status_sekolah">
+            </div>
+
+            <div>
+              <label for="jenjang">Jenjang</label>
+              <input id="jenjang">
+            </div>
+
+            <div>
+              <label for="naungan">Naungan</label>
+              <input id="naungan">
+            </div>
+
+            <div>
+              <label for="akreditasi">Akreditasi</label>
+              <input id="akreditasi">
+            </div>
+
+            <div>
+              <label for="alamat">Alamat</label>
+              <input id="alamat">
+            </div>
+
+            <div>
+              <label for="kelurahan">Kelurahan</label>
+              <input id="kelurahan">
+            </div>
+
+            <div>
+              <label for="kecamatan">Kecamatan</label>
+              <input id="kecamatan">
+            </div>
+
+            <div>
+              <label for="kabupaten">Kabupaten</label>
+              <input id="kabupaten">
+            </div>
+
+            <div>
+              <label for="provinsi">Provinsi</label>
+              <input id="provinsi">
+            </div>
+
+            <div>
+              <label for="kode_pos">Kode Pos</label>
+              <input id="kode_pos">
+            </div>
+
+            <div>
+              <label for="no_sk_operasional">Nomor SK Operasional</label>
+              <input id="no_sk_operasional">
+            </div>
+
+            <div>
+              <label for="tmt_operasional">TMT Operasional</label>
+              <input id="tmt_operasional">
+            </div>
+
+            <div>
+              <label for="luas_tanah">Luas Tanah</label>
+              <input id="luas_tanah">
+            </div>
+
+            <div>
+              <label for="sumber_listrik">Sumber Listrik</label>
+              <input id="sumber_listrik">
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email">
+            </div>
+
+            <div>
+              <label for="telepon">Telepon</label>
+              <input id="telepon">
+            </div>
+
+            <div>
+              <label for="website">Website</label>
+              <input id="website">
+            </div>
+
+            <div>
+              <label for="instagram">Instagram</label>
+              <input id="instagram">
+            </div>
+
+            <div>
+              <label for="logo">URL Logo</label>
+              <input id="logo">
+            </div>
+
+            <div>
+              <label for="banner">URL Banner</label>
+              <input id="banner">
+            </div>
+
+            <div>
+              <label for="ppdb_url">Link PPDB</label>
+              <input id="ppdb_url">
+            </div>
+
+            <div>
+              <label for="ppdb_status">Status PPDB</label>
+              <input id="ppdb_status">
+            </div>
+
+          </div>
+
+          <label for="deskripsi">Deskripsi Sekolah</label>
+          <textarea id="deskripsi" rows="5"></textarea>
+
+          <div class="admin-actions">
+            <button type="submit" class="btn-primary">Simpan Identitas Sekolah</button>
+          </div>
+        </form>
+      </section>
+
+      <p id="adminMessage" class="admin-message"></p>
+    </section>
+
+  </main>
+
+  <footer class="admin-footer">
+    Portal Resmi SDS Muhammadiyah Duri
+  </footer>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
