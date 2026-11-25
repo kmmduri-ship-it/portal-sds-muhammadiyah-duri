@@ -153,10 +153,11 @@ async function refreshAdmin() {
   const data = await callServer("adminGetData", {});
   adminData = data;
 
-  renderNews();
+    renderNews();
   renderAgenda();
   renderContent();
   fillSettings();
+  fillAppearance();
 
   showMessage("Data berhasil dimuat.");
 }
@@ -381,4 +382,16 @@ el("resetContent")?.addEventListener("click", () => el("contentForm").reset());
 // CEK TOKEN LOGIN YANG MASIH TERSIMPAN
 if (adminToken) {
   openDashboard();
+}
+// MENGISI PENGATURAN TAMPILAN
+function fillAppearance() {
+  const data = adminData?.appearance || {};
+
+  setVal("themeColor", data.themeColor || "#087443");
+  setVal("themeAccent", data.themeAccent || "#d4a72c");
+  setVal("homeBanner", data.homeBanner || "");
+  setVal("holidayMode", data.holidayMode || "automatic");
+  setVal("holidayTitle", data.holidayTitle || "");
+  setVal("holidayMessage", data.holidayMessage || "");
+  setVal("holidayImage", data.holidayImage || "");
 }
