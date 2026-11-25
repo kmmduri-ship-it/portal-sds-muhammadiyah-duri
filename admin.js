@@ -395,3 +395,28 @@ function fillAppearance() {
   setVal("holidayMessage", data.holidayMessage || "");
   setVal("holidayImage", data.holidayImage || "");
 }
+// SIMPAN PENGATURAN TAMPILAN
+el("appearanceForm")?.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const data = {
+    themeColor: val("themeColor"),
+    themeAccent: val("themeAccent"),
+    homeBanner: val("homeBanner"),
+    holidayMode: val("holidayMode"),
+    holidayTitle: val("holidayTitle"),
+    holidayMessage: val("holidayMessage"),
+    holidayImage: val("holidayImage")
+  };
+
+  const message = el("appearanceMessage");
+  message.textContent = "Menyimpan pengaturan...";
+
+  try {
+    await callServer("saveAppearanceSettings", data);
+    await refreshAdmin();
+    message.textContent = "Pengaturan berhasil disimpan.";
+  } catch (error) {
+    message.textContent = error.message;
+  }
+});
