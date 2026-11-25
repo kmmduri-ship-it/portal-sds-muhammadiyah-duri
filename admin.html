@@ -86,6 +86,9 @@
         <button type="button" class="admin-tab" data-tab="identitas">
           Identitas Sekolah
         </button>
+        <button type="button" class="admin-tab" data-tab="tampilan">
+  Tampilan & Hari Besar
+</button>
       </nav>
 
       <!-- TAB BERITA -->
@@ -350,7 +353,49 @@
           </div>
         </form>
       </section>
+      <!-- TAB TAMPILAN DAN HARI BESAR -->
+      <section id="tab-tampilan" class="admin-panel" hidden>
+        <h2>Pengaturan Tampilan Website</h2>
 
+        <form id="appearanceForm">
+          <label>Warna utama website</label>
+          <input type="color" id="themeColor" value="#087443">
+
+          <label>Warna pendamping</label>
+          <input type="color" id="themeAccent" value="#d4a72c">
+
+          <label>URL foto banner halaman depan</label>
+          <input type="url" id="homeBanner">
+
+          <hr>
+
+          <h2>Pengaturan Hari Besar</h2>
+
+          <label>Mode banner</label>
+          <select id="holidayMode">
+            <option value="automatic">Otomatis mengikuti kalender</option>
+            <option value="manual">Atur secara manual</option>
+            <option value="off">Nonaktif</option>
+          </select>
+
+          <label>Judul peringatan</label>
+          <input type="text" id="holidayTitle">
+
+          <label>Pesan peringatan</label>
+          <textarea id="holidayMessage" rows="3"></textarea>
+
+          <label>URL foto/banner peringatan</label>
+          <input type="url" id="holidayImage">
+
+          <div class="admin-actions">
+            <button type="submit" class="btn-primary">
+              Simpan Pengaturan Tampilan
+            </button>
+          </div>
+        </form>
+
+        <p class="admin-message" id="appearanceMessage"></p>
+      </section>
       <p id="adminMessage" class="admin-message"></p>
     </section>
 
